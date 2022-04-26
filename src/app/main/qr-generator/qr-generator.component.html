@@ -1,10 +1,16 @@
 <div class="qr-holder-container" fxLayout="column" fxLayoutAlign="center center"
     ngStyle.xs="padding: 10px;">
-    <img style="width: 150px;" src="assets/images/logos/logo.png">
     <div fxLayout="column" fxLayoutAlign="center center">
         <qrcode style="margin-bottom: 20px;" [qrdata]="timestamp" elementType="svg" width="256" [errorCorrectionLevel]="'M'"></qrcode>
 
         <span style="font-size: 1.5rem; text-align: center;">{{"QR_GEN.SCAN_QR_TO_START" | translate}}</span>
 
+        <h2 style="margin-top: 20px;">
+            {{"QR_GEN.SUCCESSFUL_DAY" | translate}}
+        </h2>
+
     </div>
+
+    <img style="width: 150px; margin-top: 25px;" src="assets/images/logos/logo.png">
+
 </div>

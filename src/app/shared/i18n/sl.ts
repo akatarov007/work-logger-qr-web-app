@@ -137,7 +137,8 @@ export const locale = {
             },
         },
         'QR_GEN': {
-            "SCAN_QR_TO_START": "Skeniraj QR kodo znotraj mobilne aplikacije LESKO MOBILE za evidentiranje začetka ali konca tvoje delovne izmene."
+            "SUCCESSFUL_DAY": "Želimo vam uspešen delovni dan!",
+            "SCAN_QR_TO_START": "S pomočjo mobilne aplikacije za beleženje ur z uporabo QR skenerja, prosimo skenirajte zgornjo QR kodo za vnos začetka ter konca delavne izmene."
         },
         'ADD_BTN': "Dodaj",
         'SAVE_BTN': "Shrani",

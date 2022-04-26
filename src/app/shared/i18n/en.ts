@@ -136,7 +136,8 @@ export const locale = {
             },
         },
         'QR_GEN': {
-          "SCAN_QR_TO_START": "Scan QR code to log your arrival or end of shift"
+            "SUCCESSFUL_DAY": "We wish you a successful working day!",
+            "SCAN_QR_TO_START": "Scan QR code to log your arrival or end of shift"
         },
         'ADD_BTN': "Add",
         'SAVE_BTN': "Save",

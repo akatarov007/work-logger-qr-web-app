@@ -6,7 +6,7 @@ export class Globals {
     BASE_URL = 'http://localhost:8080'
 
     // production
-    // BASE_URL = 'https://';
+    // BASE_URL = 'https://'; // TODO: Change in production
 
     USER_ROLES = [
         {

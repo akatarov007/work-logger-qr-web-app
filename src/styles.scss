@@ -1,0 +1,226 @@
+// Import Fuse core library
+@import "@fuse/scss/core";
+
+// Import app.theme.scss
+@import "app/app.theme";
+
+@import "~ng-snotify/styles/material";
+
+.orders-table {
+    //flex: 1 1 auto;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .mat-header-row {
+        min-height: 64px;
+    }
+
+    .order {
+        position: relative;
+        cursor: pointer;
+        //height: 84px;
+    }
+
+    .order:hover {
+        background-color: #e2e2e2 !important;
+        cursor: pointer !important;
+    }
+
+    .mat-cell {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+        padding-right: 0 !important;
+    }
+
+    .mat-column-id {
+        flex: 0 1 84px;
+    }
+
+    .mat-column-image {
+        flex: 0 1 84px;
+
+        .product-image {
+            width: 52px;
+            height: 52px;
+            border: 1px solid rgba(0, 0, 0, .12);
+        }
+    }
+
+    .mat-column-buttons {
+        flex: 0 1 80px;
+    }
+
+    .quantity-indicator {
+        display: inline-block;
+        vertical-align: middle;
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        margin-right: 8px;
+
+        & + span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    .active-icon {
+        border-radius: 50%;
+    }
+}
+
+// attachment gallery custom css
+lightbox {
+    box-shadow: none !important;
+}
+
+gallery {
+    background-color: transparent !important;
+}
+
+.g-image-item {
+    background-size: contain !important;
+}
+
+.g-backdrop {
+    background-color: rgba(0,0,0,0.62) !important;
+}
+
+//////////////////////////////////////////
+// Snotify custom styles
+//$success: #c8e6c9;
+
+.snotify {
+    width: 400px;
+    //width: 30%;
+}
+
+.snotify-centerTop, .snotify-centerCenter, .snotify-centerBottom {
+    left: calc(50% - 400px / 2);
+    top: 40px;
+}
+
+.snotify-confirm {
+    //background-color: #444141;
+    //
+    //.snotifyToast__progressBar {
+    //    background-color: #231f20;
+    //}
+    //
+    //.snotifyToast__progressBar__percentage {
+    //    //background-color: #9EA1A9;
+    //    background-color: white;
+    //}
+
+    .snotifyToast__body {
+        text-align: center;
+        align-self: center;
+        //color: #ECECEE;
+    }
+
+    .snotifyToast__title {
+        text-align: center;
+        align-self: center;
+        //color: #ECECEE;
+    }
+}
+
+.snotify-success {
+    //background-color: #1f1b1c;
+    //
+    //.snotifyToast__progressBar {
+    //    background-color: #444141;
+    //}
+
+    .snotifyToast__progressBar__percentage {
+        //background-color: #9EA1A9;
+        //background-color: white;
+    }
+
+    .snotifyToast__body {
+        text-align: center;
+        align-self: center;
+        //color: #ECECEE;
+    }
+
+    .snotifyToast__title {
+        text-align: center;
+        align-self: center;
+        //color: #ECECEE;
+    }
+}
+
+.snotify-info {
+    //background-color: #231f20;
+
+    .snotifyToast__body {
+        text-align: center;
+        align-self: center;
+        //color: #ECECEE;
+    }
+
+    .snotifyToast__title {
+        text-align: center;
+        align-self: center;
+        //color: #ECECEE;
+    }
+}
+
+.snotify-warning {
+    //background-color: #ffc107;
+
+    .snotifyToast__body {
+        text-align: center;
+        align-self: center;
+        //color: #303030;
+    }
+
+    .snotifyToast__title {
+        text-align: center;
+        align-self: center;
+        //color: #303030;
+    }
+}
+
+.snotify-error {
+    //background-color: #3C4252;
+
+    .snotifyToast__body {
+        text-align: center;
+        align-self: center;
+        //color: #ECECEE;
+    }
+
+    .snotifyToast__title {
+        text-align: center;
+        align-self: center;
+        //color: #ECECEE;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    mat-row, mat-footer-row {
+        min-height: fit-content !important;
+    }
+
+    .snotify {
+        width: 80%;
+    }
+
+    .snotify-centerTop, .snotify-centerCenter, .snotify-centerBottom {
+        left: calc(50% - 80% / 2);
+        top: 40px;
+        //text-align: center;
+    }
+}
+
+.mat-dialog-actions {
+    background-color: #254b8a !important;
+    color: whitesmoke !important;
+    padding: 0px 16px !important;
+}

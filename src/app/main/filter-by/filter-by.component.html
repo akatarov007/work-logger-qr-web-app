@@ -1,0 +1,85 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+
+        <button mat-stroked-button color="accent"
+                (click)="resetFilter()"
+                style="margin: 10px 0px; padding: 5px;" fxLayoutAlign="center">
+            <mat-icon>
+                clear
+            </mat-icon>
+            {{"FILTER_BY.CLEAR_FILTER" | translate}}
+        </button>
+
+        <!-- USERS -->
+        <form *ngIf="object === 'users'" [formGroup]="filterForm" (ngSubmit)="matDialogRef.close(filterForm)">
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>{{"USERS.NAME" | translate}}</mat-label>
+                    <input name="name" formControlName="name" matInput>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>{{"USERS.USERNAME" | translate}}</mat-label>
+                    <input name="username" formControlName="username" matInput>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>{{"USERS.EMAIL" | translate}}</mat-label>
+                    <input name="email" formControlName="email" matInput>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>{{"USERS.ROLE" | translate}}</mat-label>
+                    <mat-select name="role" formControlName="role" matInput>
+                        <mat-option value="">{{"FILTER_BY.USERS.ALL_ITEMS" | translate}}</mat-option>
+                        <mat-option value="1">{{"FILTER_BY.USERS.SUPER_ADMIN" | translate}}</mat-option>
+<!--                        <mat-option value="2">{{"FILTER_BY.USERS.ADMIN" | translate}}</mat-option>-->
+<!--                        <mat-option value="3">{{"FILTER_BY.USERS.OFFICE_WORKER" | translate}}</mat-option>-->
+<!--                        <mat-option value="4">{{"FILTER_BY.USERS.WORKER" | translate}}</mat-option>-->
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <button fxHide="true"
+                    mat-raised-button
+                    class="filter-button"
+                    type="submit"
+                    (click)="matDialogRef.close(filterForm)"
+                    aria-label="FILTER">
+                {{"FILTER" | translate}}
+            </button>
+
+        </form>
+        <!-- / USERS -->
+
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+        <button
+            mat-raised-button
+            class="filter-button"
+            type="submit"
+            (click)="matDialogRef.close(filterForm)"
+            aria-label="FILTER">
+            {{"FILTER" | translate}}
+        </button>
+
+    </div>
+</div>

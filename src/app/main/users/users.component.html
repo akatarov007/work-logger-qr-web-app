@@ -1,0 +1,142 @@
+<div id="orders" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent"
+             fxLayout="row" fxLayoutAlign="space-between center"
+             fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-sm-0" ngClass.gt-xs="mb-24"
+                 fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    people_alt
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{"USERS.USERS" | translate}}</span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <!-- <div class="search-wrapper  ml-sm-32">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input #filter placeholder="Search for an order">
+                </div>
+            </div> -->
+            <!-- / SEARCH -->
+
+            <div style="width: 100px;" fxLayout="row" fxLayoutAlign="space-between center">
+                <!-- FILTER BUTTON -->
+                <button mat-mini-fab color="accent"
+                        (click)="openFilter()"
+                        class="add-product-button fuse-white mt-md-0">
+                    <mat-icon>
+                    filter_list
+                    </mat-icon>
+                </button>
+                <!-- / FILTER BUTTON -->
+
+                <!-- ADD BUTTON -->
+                <button mat-mini-fab color="accent"
+                        [routerLink]="'/users/user/new'"
+                        class="add-product-button fuse-white mt-md-0">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <!-- / ADD BUTTON -->
+            </div>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <mat-table class="orders-table"
+                       #table [dataSource]="dataSource"
+                       matSort
+                       [@animateStagger]="{value:'50'}"
+                       fusePerfectScrollbar>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{"USERS.NAME" | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let order">
+                        <span class="mobile-label">{{'USERS.NAME' | translate}}</span>
+                        <p class="text-truncate">{{order.name}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Username Column -->
+                <ng-container matColumnDef="username">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{"USERS.USERNAME" | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let order">
+                        <span class="mobile-label">{{'USERS.USERNAME' | translate}}</span>
+                        <p class="text-truncate">
+                            {{order.username}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="email">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{"USERS.EMAIL" | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let order">
+                        <span class="mobile-label">{{'USERS.EMAIL' | translate}}</span>
+                        <p class="text-truncate">
+                            {{order.email}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Role Column -->
+                <ng-container matColumnDef="role">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{"USERS.ROLE" | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let order">
+                        <span class="mobile-label">{{'USERS.ROLE' | translate}}</span>
+                        <p class="text-truncate">
+                            {{(_globals.USER_ROLES | getRole:[order.role])[translate.currentLang.toLocaleLowerCase()]}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let order; columns: displayedColumns;"
+                         class="order"
+                         matRipple
+                         [routerLink]="'/users/user/'+order.id">
+                </mat-row>
+            </mat-table>
+
+            <!--     No results text       -->
+            <div class="no-results"
+                 [style.display]="dataSource.renderedData.length == 0 && !this.progress ? '' : 'none'">
+                {{'NO_RESULTS' | translate}}
+            </div>
+
+            <!--     Loading text      -->
+            <div class="no-results"
+                 [style.display]="dataSource.renderedData.length == 0 && this.progress ? '' : 'none'">
+                {{'LOADING' | translate}}
+            </div>
+
+
+            <mat-paginator #paginator
+                           (page)="reloadData($event)"
+                           [length]="_usersService.length"
+                           [pageIndex]="0"
+                           [pageSize]="25"
+                           [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

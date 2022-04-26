@@ -1,0 +1,230 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="center flex-start" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/users'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                     [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{user.name}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        {{"USERS.NEW_USER" | translate}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{"USERS.USER_DETAILS" | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <div style="width: fit-content;" fxLayout="row" fxLayout.xs="row" fxLayoutAlign="space_between center" fxLayoutAlign.xs="center end">
+
+                <button mat-raised-button
+                        style="background-color: white;"
+                        ngStyle.gt-xs="margin-right: 5px;"
+                        ngStyle.xs="margin: 5px;"
+                        *ngIf="pageType ==='edit'"
+                        (click)="deleteUser()">
+                    <span style="color: red;">{{"DELETE" | translate}}</span>
+                </button>
+
+                <button mat-raised-button
+                        style="background-color: white;"
+                        ngStyle.gt-xs="margin-right: 5px;"
+                        ngStyle.xs="margin: 5px;"
+                        [disabled]="userForm.invalid || progress"
+                        *ngIf="pageType ==='new'" (click)="addUser()">
+                    <span>{{"ADD_BTN" | translate}}</span>
+                </button>
+
+                <button mat-raised-button
+                        style="background-color: white;"
+                        ngStyle.gt-xs="margin-right: 5px;"
+                        ngStyle.xs="margin: 5px;"
+                        [disabled]="userForm.invalid || userForm.pristine || progress"
+                        *ngIf="pageType ==='edit'" (click)="saveUser()">
+                    <span>{{"SAVE_BTN" | translate}}</span>
+                </button>
+            </div>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="productForm" [formGroup]="userForm" class="product w-100-p" fxLayout="column" fxFlex>
+
+                    <mat-tab-group [(selectedIndex)]="materialTabsIndex">
+
+                        <mat-tab label="{{'USERS.USER_GENERAL' | translate}}">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{"USERS.NAME" | translate}}</mat-label>
+                                    <input matInput placeholder="{{'USERS.NAME' | translate}}"
+                                           name="name"
+                                           formControlName="name"
+                                           required>
+                                    <mat-error *ngIf="userForm.get('name').hasError('required')">
+                                        {{"USERS.FORM_FIELDS.NAME_REQUIRED" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{"USERS.USERNAME" | translate}}</mat-label>
+                                    <input matInput placeholder="{{'USERS.USERNAME' | translate}}"
+                                           name="username"
+                                           formControlName="username"
+                                           required>
+                                    <mat-error *ngIf="userForm.get('username').hasError('required')">
+                                        {{"USERS.FORM_FIELDS.USERNAME_REQUIRED" | translate}}
+                                    </mat-error>
+                                    <mat-error *ngIf="userForm.get('username').hasError('taken')">
+                                        {{"USERS.FORM_FIELDS.USERNAME_TAKEN" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{"USERS.EMAIL" | translate}}</mat-label>
+                                    <input matInput placeholder="{{'USERS.EMAIL' | translate}}"
+                                           name="email"
+                                           formControlName="email"
+                                           required>
+                                    <mat-error *ngIf="userForm.get('email').hasError('required')">
+                                        {{"USERS.FORM_FIELDS.EMAIL_REQUIRED" | translate}}
+                                    </mat-error>
+                                    <mat-error *ngIf="userForm.get('email').hasError('email')">
+                                        {{"USERS.FORM_FIELDS.EMAIL_INVALID" | translate}}
+                                    </mat-error>
+                                    <mat-error *ngIf="userForm.get('email').hasError('taken')">
+                                        {{"USERS.FORM_FIELDS.EMAIL_TAKEN" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p"
+                                                *ngIf="pageType === 'new'">
+                                    <mat-label>{{"USERS.PASSWORD" | translate}}</mat-label>
+                                    <input matInput type="password" formControlName="password" required>
+                                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                                    <mat-error>
+                                        {{"USERS.FORM_FIELDS.PASSWORD_REQUIRED" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <div *ngIf="pageType === 'new' && userForm.get('password').hasError('pattern')"
+                                     class="message-box info"
+                                     style="margin-bottom: 21.5px;">
+                                    <span>{{'RESET_PASSWORD.PASS_TYPE_DEF' | translate}}:</span>
+                                    {{'RESET_PASSWORD.PASS_REQUIRED_TYPE_ONE_LINE' | translate | lowercase}}
+                                </div>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p"
+                                                *ngIf="pageType === 'new'">
+                                    <mat-label>{{"USERS.PASSWORD_CONFIRM" | translate}}</mat-label>
+                                    <input matInput type="password" formControlName="passwordConfirm" required>
+                                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                                    <mat-error *ngIf="userForm.get('passwordConfirm').hasError('required')">
+                                        {{"RESET_PASSWORD.PASSWORD_CONFIRM_REQUIRED" | translate}}
+                                    </mat-error>
+                                    <mat-error *ngIf="!userForm.get('passwordConfirm').hasError('required') &&
+                                       userForm.get('passwordConfirm').hasError('passwordsNotMatching')">
+                                        {{"RESET_PASSWORD.PASSWORDS_NOT_MATCHING" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{"USERS.ROLE" | translate}}</mat-label>
+                                    <mat-select matInput placeholder="{{'USERS.ROLE' | translate}}"
+                                           name="role"
+                                           formControlName="role" (valueChange)="userRoleChange($event)"
+                                           required>
+                                        <mat-option [value]="1">{{"USERS.ROLES.SUPER_ADMIN" | translate}}</mat-option>
+<!--                                        <mat-option [value]="2">{{"USERS.ROLES.ADMIN" | translate}}</mat-option>-->
+<!--                                        <mat-option [value]="3">{{"USERS.ROLES.OFFICE_WORKER" | translate}}</mat-option>-->
+<!--                                        <mat-option [value]="4">{{"USERS.ROLES.WORKER" | translate}}</mat-option>-->
+                                        <mat-option [value]="99">{{"USERS.ROLES.SCHEDULER" | translate}}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="userForm.get('role').hasError('required')">
+                                        {{"USERS.FORM_FIELDS.ROLE_REQUIRED" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <button style="margin-left: auto;" *ngIf="userForm.get('role').value === 4" mat-raised-button color="primary" (click)="tabForward()">{{"MATERIAL_TAB_PROCEED_BTN" | translate}}</button>
+                                </div>
+                            </div>
+
+                        </mat-tab>
+
+                        <!-- SPECIFY WORK TYPES MAT TAB -->
+                        <mat-tab *ngIf="userForm.get('role').value === 4" label="{{'USERS.WORK_TYPES' | translate}}">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <div *ngFor="let work_type of getWorkTypesFormArray.controls">
+                                    <form [formGroup]="work_type">
+                                        <div class="price_group_form" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space_between center" fxLayoutAlign.xs="center" fxLayout.xs="column">
+                                            <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                                <mat-label>{{"USERS.WORK_TYPE" | translate}}</mat-label>
+                                                <input matInput placeholder="{{work_type.get('work_type').value[translate.currentLang]}}"
+                                                       name="work_type_name"
+                                                       formControlName="work_type_name"
+                                                       type="text">
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                                <mat-label>{{"USERS.HOURLY_RATE" | translate}}</mat-label>
+                                                <input matInput placeholder="{{'USERS.HOURLY_RATE' | translate}}"
+                                                       name="hourly_rate"
+                                                       formControlName="hourly_rate"
+                                                       type="number">
+                                                <span matSuffix>€&nbsp;</span>
+                                                <mat-error *ngIf="work_type.get('hourly_rate').hasError('required')">
+                                                    {{"USERS.FORM_FIELDS.HOURLY_RATE__REQUIRED" | translate}}
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <button mat-raised-button color="primary" (click)="tabBackward()">{{"MATERIAL_TAB_BACKWARD_BTN" | translate}}</button>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <!-- / SPECIFY WORK TYPES MAT TAB -->
+
+                    </mat-tab-group>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

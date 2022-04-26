@@ -1,0 +1,62 @@
+<div id="login" fxLayout="column">
+
+    <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+        <div id="login-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+            <div class="logo">
+                <img src="assets/images/logos/logo.png">
+            </div>
+
+<!--            <div class="title">{{"LOGIN" | translate}}</div>-->
+
+            <form name="loginForm" [formGroup]="loginForm" novalidate>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"LOGIN_FORM.USERNAME" | translate}}</mat-label>
+                    <input matInput formControlName="username">
+                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                    <mat-error *ngIf="loginForm.get('username').hasError('required')">
+                        {{"LOGIN_FORM.USERNAME_REQUIRED" | translate}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"LOGIN_FORM.PASSWORD" | translate}}</mat-label>
+                    <input matInput type="password" autocomplete="off" formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error>
+                        {{"LOGIN_FORM.PASSWORD_REQUIRED" | translate}}
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+                     fxLayoutAlign="space-between center">
+<!--                    <mat-checkbox class="remember-me" aria-label="Remember Me">-->
+<!--                        Remember Me-->
+<!--                    </mat-checkbox>-->
+
+                    <a class="forgot-password" [routerLink]="'/forgot-password'">
+                        {{"LOGIN_FORM.FORGOT_PASSWORD" | translate}}
+                    </a>
+                </div>
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="LOG IN"
+                        [disabled]="loginForm.invalid" (click)="login()">
+                    {{"LOGIN" | translate}}
+                </button>
+
+            </form>
+
+            <!-- USER REGISTRATION IS HANDLED BY SYSTEM ADMINISTRATOR -->
+
+            <!-- <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                <span class="text">Don't have an account?</span>
+                <a class="link" [routerLink]="'/pages/auth/register'">Create an account</a>
+            </div> -->
+
+        </div>
+
+    </div>
+
+</div>

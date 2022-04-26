@@ -65,6 +65,32 @@ export const locale = {
             'OK': 'V redu',
             'CANCEL': 'Prekliči',
         },
+        "CHECK_DELIVERY_STATUS": {
+            "TOPIC": "Preverite status svojega naročila",
+            "TYPE_SHIPPMENT_NO": "Vpišite številko vašega naročila",
+            "CHECK_BTN": "Preveri status",
+            "FORM_FIELDS": {
+                "SHIPPMENT_NUMBER_REQUIRED": "Številka naročila je obvezna"
+            },
+            "STATUS_IS": "Status naročila št. {{shippmentNo}} je",
+            "DELIVERY_NOT_FOUND": "V naši bazi nismo našli naročila št. {{shippmentNo}}. Prosimo preverite svoj vnos in pozkusite ponovno."
+        },
+        "SHIPPMENTS": {
+            "SHIPPMENTS": "Naročila",
+            "NEW_SHIPPMENT": "Novo naročilo",
+            "SHIPPMENT_DETAILS": "Podrobnosti naročila",
+            "SHIPPMENT_GENERAL": "Splošno",
+            "SHIPPMENT_NO": "Številka naročila",
+            "DELIVERY_ADDRESS": "Naslov za dostavo",
+            "STATUS": "Status naročila",
+            "DESCRIPTION": "Podrobnosti naročila",
+            "FORM_FIELDS": {
+                "SHIPPMENT_NO_REQUIRED": "Številka naročila je obvezna",
+                "DELIVERY_ADDRESS_REQUIRED": "Naslov za dostavo je obvezen",
+                "STATUS_REQUIRED": "Status naročila je obvezen",
+                "DESCRIPTION_REQUIRED": "Opis naročila je obvezen",
+            }
+        },
         'SOMETHING_WENT_WRONG': "Nekaj je šlo narobe.",
         'INVALID_TOKEN': 'Žeton je neveljaven ali pa je potekel.',
         'INVALID_REFRESH_TOKEN': "Osvežitveni žeton je neveljaven.",
@@ -126,6 +152,10 @@ export const locale = {
             'ONLY_NOT_CANCELLED': 'Samo razpoložljivi',
             'ONLY_CANCELLED': 'Samo nerazpoložljivi',
             'ALL': 'Vsi',
+
+            'SHIPMENTS': {
+                'SHIPMENT_NO': "Številka pošiljke"
+            },
 
             'USERS': {
                 'TOPIC': "Filter uporabnikov",

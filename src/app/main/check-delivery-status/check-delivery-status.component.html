@@ -1,0 +1,58 @@
+<div id="login" fxLayout="column">
+
+    <!-- PROGRESS BAR -->
+    <div style="width: 100%;">
+        <mat-progress-bar *ngIf="checkingInProgress" mode="indeterminate" color="brand"></mat-progress-bar>
+    </div>
+    <!-- / PROGRESS BAR -->
+
+    <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+
+        <div id="login-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+            <div class="logo">
+                <img src="assets/images/logos/logo.png">
+            </div>
+
+            <div class="title">
+                <b>{{"CHECK_DELIVERY_STATUS.TOPIC" | translate}}</b>
+            </div>
+
+            <form name="checkForm"  [formGroup]="checkForm">
+
+                <!-- SHIPPMENT NO. -->
+                <mat-form-field appearance="outline">
+                    <mat-label>{{'CHECK_DELIVERY_STATUS.TYPE_SHIPPMENT_NO' | translate}}</mat-label>
+                    <input matInput formControlName="shippmentNo" placeholder="{{'CHECK_DELIVERY_STATUS.TYPE_SHIPPMENT_NO' | translate}}">
+                    <mat-error *ngIf="checkForm.get('shippmentNo').hasError('required')">
+                        {{"CHECK_DELIVERY_STATUS.FORM_FIELDS.SHIPPMENT_NUMBER_REQUIRED" | translate}}
+                    </mat-error>
+                </mat-form-field>
+                <!-- / SHIPPMENT NO. -->
+
+                <!-- CHECK SHIPPMENT STATUS BUTTON. -->
+                <button style="width: 100%; margin-top: 0px;" mat-raised-button color="accent" class="submit-button" aria-label="LOG IN"
+                        [disabled]="checkForm.invalid" (click)="checkOrderStatus(checkForm.get('shippmentNo').value)">
+                    {{"CHECK_DELIVERY_STATUS.CHECK_BTN" | translate}}
+                </button>
+                <!-- / CHECK SHIPPMENT STATUS BUTTON. -->
+
+            </form>
+
+            <!-- STATUS RESULT -->
+            <div style="width: 100%;" *ngIf="checkPressed && !checkingInProgress">
+                <div *ngIf="!status" class="message-box error">
+                    {{"CHECK_DELIVERY_STATUS.DELIVERY_NOT_FOUND" | translate:{'shippmentNo': checkForm.get('shippmentNo').value} }}
+                </div>
+                <div *ngIf="status" class="message-box info">
+                    {{"CHECK_DELIVERY_STATUS.STATUS_IS" | translate:{'shippmentNo': checkForm.get('shippmentNo').value} }}: <b>{{status.label[translate.currentLang.toLocaleLowerCase()]}}</b>
+                </div>
+            </div>
+            <!-- / STATUS RESULT -->
+
+        </div>
+
+    </div>
+
+</div>

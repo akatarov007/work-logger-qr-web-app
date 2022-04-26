@@ -1,0 +1,129 @@
+<div id="orders" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent"
+             fxLayout="row" fxLayoutAlign="space-between center"
+             fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-sm-0" ngClass.gt-xs="mb-24"
+                 fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    list
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{"SHIPPMENTS.SHIPPMENTS" | translate}}</span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <!-- <div class="search-wrapper  ml-sm-32">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input #filter placeholder="Search for an order">
+                </div>
+            </div> -->
+            <!-- / SEARCH -->
+
+            <div style="width: 100px;" fxLayout="row" fxLayoutAlign="flex-end center">
+                <!-- FILTER BUTTON -->
+                <button mat-mini-fab color="accent"
+                        (click)="openFilter()"
+                        class="add-product-button fuse-white mt-md-0">
+                    <mat-icon>
+                    filter_list
+                    </mat-icon>
+                </button>
+                <!-- / FILTER BUTTON -->
+
+                <!-- ADD BUTTON -->
+<!--                <button mat-mini-fab color="accent"-->
+<!--                        [routerLink]="'/shipments/shipment/new'"-->
+<!--                        class="add-product-button fuse-white mt-md-0">-->
+<!--                    <mat-icon>add</mat-icon>-->
+<!--                </button>-->
+                <!-- / ADD BUTTON -->
+            </div>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <mat-table class="orders-table"
+                       #table [dataSource]="dataSource"
+                       matSort
+                       [@animateStagger]="{value:'50'}"
+                       fusePerfectScrollbar>
+
+                <!-- Delivery Number Column -->
+                <ng-container matColumnDef="shippmentNo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{"SHIPPMENTS.SHIPPMENT_NO" | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let order">
+                        <span class="mobile-label">{{'SHIPPMENTS.SHIPPMENT_NO' | translate}}</span>
+                        <p class="text-truncate">{{order.shippmentNo}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Delivery Address Column -->
+                <ng-container matColumnDef="delivery_address">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{"SHIPPMENTS.DELIVERY_ADDRESS" | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let order">
+                        <span class="mobile-label">{{'SHIPPMENTS.DELIVERY_ADDRESS' | translate}}</span>
+                        <p class="text-truncate">{{order.delivery_address}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Delivery Status Column -->
+                <ng-container matColumnDef="status">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{"SHIPPMENTS.STATUS" | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let order">
+                        <span class="mobile-label">{{'SHIPPMENTS.STATUS' | translate}}</span>
+                        <p class="text-truncate">
+                            {{(_globals.SHIPPMENT_STATUSES | getShippmentStatus:[order.status])[translate.currentLang.toLocaleLowerCase()]}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let order; columns: displayedColumns;"
+                         class="order"
+                         matRipple
+                         [routerLink]="'/shipments/shipment/'+order.id">
+                </mat-row>
+            </mat-table>
+
+            <!--     No results text       -->
+            <div class="no-results"
+                 [style.display]="dataSource.renderedData.length == 0 && !this.progress ? '' : 'none'">
+                {{'NO_RESULTS' | translate}}
+            </div>
+
+            <!--     Loading text      -->
+            <div class="no-results"
+                 [style.display]="dataSource.renderedData.length == 0 && this.progress ? '' : 'none'">
+                {{'LOADING' | translate}}
+            </div>
+
+
+            <mat-paginator #paginator
+                           (page)="reloadData($event)"
+                           [length]="shippmentsService.length"
+                           [pageIndex]="pageNo"
+                           [pageSize]="pageSize"
+                           [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

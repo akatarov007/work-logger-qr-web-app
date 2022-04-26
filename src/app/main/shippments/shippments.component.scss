@@ -1,0 +1,195 @@
+@import "../../../@fuse/scss/fuse";
+
+app-shippments-component {
+
+    #orders {
+
+        .top-bg {
+            height: 85px;
+
+            @include media-breakpoint('xs') {
+                height: 224px;
+            }
+        }
+
+        > .center {
+            padding: 0 !important;
+
+
+            > .header {
+                height: 85px !important;
+                min-height: 85px !important;
+                max-height: 85px !important;
+                padding: 0 32px !important;
+
+                .search-wrapper {
+                    width: 100%;
+                    max-width: 480px;
+                    border-radius: 28px;
+                    overflow: hidden;
+                    @include mat-elevation(1);
+
+                    @include media-breakpoint('xs') {
+                        width: 100%;
+                    }
+
+                    .search {
+                        width: 100%;
+                        height: 48px;
+                        line-height: 48px;
+                        padding: 0 18px;
+
+                        input {
+                            width: 100%;
+                            height: 48px;
+                            min-height: 48px;
+                            max-height: 48px;
+                            padding: 0 16px;
+                            border: none;
+                            outline: none;
+                        }
+                    }
+                }
+
+                @include media-breakpoint('xs') {
+                    padding: 8px 5px !important;
+                    height: 85px !important;
+                    min-height: 85px !important;
+                    max-height: 85px !important;
+                    //padding: 0 32px !important;
+                }
+            }
+        }
+    }
+
+    .mat-tab-group,
+    .mat-tab-body-wrapper,
+    .tab-content {
+        flex: 1 1 auto;
+        max-width: 100%;
+    }
+
+    .orders-table {
+        //flex: 1 1 auto;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
+        .mat-header-row {
+            min-height: 64px;
+        }
+
+        .order {
+            position: relative;
+            cursor: pointer;
+            //height: 84px;
+        }
+
+        .order:hover {
+            background-color: #e2e2e2;
+            cursor: pointer;
+
+        }
+
+        .mat-cell {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+            //padding: 0 !important;
+        }
+
+        .mat-column-id {
+            flex: 0 1 84px;
+        }
+
+        .mat-column-image {
+            flex: 0 1 84px;
+
+            .product-image {
+                width: 52px;
+                height: 52px;
+                border: 1px solid rgba(0, 0, 0, .12);
+            }
+        }
+
+        .mat-column-buttons {
+            flex: 0 1 80px;
+        }
+
+        .mat-column-bureaucrat_id {
+            flex: 0 0 8%;
+        }
+
+        .mat-column-cancellation {
+            flex: 0 0 10%;
+        }
+
+        .quantity-indicator {
+            display: inline-block;
+            vertical-align: middle;
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+
+            & + span {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+
+        .active-icon {
+            border-radius: 50%;
+        }
+    }
+
+    // No results/loading in tables
+    .no-results {
+        text-align: center;
+        padding: 20px;
+        font-weight: 800;
+        font-size: large;
+        color: #254b8a;
+    }
+
+    .mobile-label {
+        display: none;
+    }
+
+    .mat-column-cancellation {
+        justify-content: center;
+    }
+
+    @media(max-width: 600px) {
+
+        .mat-cell {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .mobile-label {
+            width: 40%;
+            word-break: break-word;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .mat-row {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 8px 24px;
+        }
+
+        mat-cell:first-child, mat-footer-cell:first-child, mat-header-cell:first-child {
+            padding-left: 0;
+        }
+
+        mat-header-row {
+            display: none !important;
+        }
+
+    }
+}

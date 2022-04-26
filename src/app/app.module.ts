@@ -21,7 +21,7 @@ import { SampleModule } from 'app/main/sample/sample.module';
 import {
     MatDialogModule,
     MatFormFieldModule, MatInputModule,
-    MatPaginatorIntl, MatPaginatorModule,
+    MatPaginatorIntl, MatPaginatorModule, MatProgressBarModule,
     MatSelectModule, MatSortModule, MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
@@ -46,6 +46,13 @@ import {QRCodeModule} from 'angularx-qrcode';
 import {GetRolePipe} from './shared/pipes/get-role.pipe';
 import {UsersService} from './main/users/users.service';
 import {Globals} from './shared/globals';
+import {ShippmentsComponent} from './main/shippments/shippments.component';
+import {ShippmentComponent} from './main/shippments/shippment/shippment.component';
+import {ShippmentService} from './main/shippments/shippment/shippment.service';
+import {GetShippmentStatusPipe} from './shared/pipes/get-shippment-status-pipe/get-shippment-status.pipe';
+import {ShippmentsService} from './main/shippments/shippments.service';
+import {CheckDeliveryStatusComponent} from './main/check-delivery-status/check-delivery-status.component';
+import {GetShippmentStatusPipeModule} from './shared/pipes/get-shippment-status-pipe/get-shippment-status-pipe.module';
 
 // @ts-ignore
 ToastDefaults.toast.position = 'rightTop';
@@ -102,6 +109,22 @@ const appRoutes: Routes = [
         data: {expectedRole: [1]}
     },
     {
+        path: 'shipments',
+        canActivate: [AuthGuard],
+        data: {expectedRole: [1, 2]},
+        component: ShippmentsComponent
+    },
+    {
+        path: 'shipments/shipment/:id',
+        component: ShippmentComponent,
+        canActivate: [AuthGuard],
+        data: {expectedRole: [1, 2]},
+        canDeactivate: [CanDeactivateGuard],
+        resolve: {
+            data: ShippmentService
+        }
+    },
+    {
         path: 'users/user/:id',
         component: UserComponent,
         canActivate: [AuthGuard],
@@ -110,7 +133,11 @@ const appRoutes: Routes = [
         resolve: {
             data: UserService
         }
-    }
+    },
+    {
+        path: 'check-order-status',
+        component: CheckDeliveryStatusComponent,
+    },
 ];
 
 @NgModule({
@@ -124,7 +151,10 @@ const appRoutes: Routes = [
         ResetPasswordComponent,
         MailConfirmComponent,
         FilterByComponentDialogComponent,
-        GetRolePipe
+        ShippmentComponent,
+        ShippmentsComponent,
+        GetRolePipe,
+        CheckDeliveryStatusComponent
     ],
     imports: [
         BrowserModule,
@@ -163,11 +193,15 @@ const appRoutes: Routes = [
         MatTabsModule,
         MatInputModule,
         MatSortModule,
+        MatProgressBarModule,
+        GetShippmentStatusPipeModule
     ],
     providers: [
         {provide: 'SnotifyToastConfig', useValue: ToastDefaults},
         SnotifyService,
         UsersService,
+        ShippmentService,
+        ShippmentsService,
         UserService,
         {
             provide: HTTP_INTERCEPTORS,

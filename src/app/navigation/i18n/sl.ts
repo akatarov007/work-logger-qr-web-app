@@ -6,6 +6,7 @@ export const locale = {
             'HOME'        : {
                 'TITLE': 'Domov',
             },
+            'SHIPPMENTS': "Pošiljke",
             'USERS': 'Uporabniki',
         }
     }

@@ -1,0 +1,142 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="center flex-start" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/shipments'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                     [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{shippment.shippmentNo}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        {{"SHIPPMENTS.NEW_SHIPPMENT" | translate}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{"SHIPPMENTS.SHIPPMENT_DETAILS" | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <div style="width: fit-content;" fxLayout="row" fxLayout.xs="row" fxLayoutAlign="space_between center" fxLayoutAlign.xs="center end">
+
+                <!-- <button mat-mini-fab
+                        color="warn"
+                        style="color: #004b8a; background-color: white;"
+                        ngStyle.gt-xs="margin-right: 5px;"
+                        ngStyle.xs="margin: 5px;"
+                        *ngIf="pageType ==='edit'" (click)="deleteLift()">
+                    <mat-icon>delete</mat-icon>
+                </button> -->
+
+<!--                <button mat-raised-button-->
+<!--                        style="background-color: white;"-->
+<!--                        class="save-product-button"-->
+<!--                        ngStyle.gt-xs="margin-right: 5px;"-->
+<!--                        ngStyle.xs="margin: 5px;"-->
+<!--                        [disabled]="shipmentForm.invalid || progress"-->
+<!--                        *ngIf="pageType ==='new'" (click)="addShipment()">-->
+<!--                    <span>{{"ADD_BTN" | translate}}</span>-->
+<!--                </button>-->
+
+<!--                <button mat-raised-button-->
+<!--                        style="background-color: white;"-->
+<!--                        class="save-product-button"-->
+<!--                        ngStyle.gt-xs="margin-right: 5px;"-->
+<!--                        ngStyle.xs="margin: 5px;"-->
+<!--                        [disabled]="shipmentForm.invalid || shipmentForm.pristine || progress"-->
+<!--                        *ngIf="pageType ==='edit'" (click)="saveShipment()">-->
+<!--                    <span>{{"SAVE_BTN" | translate}}</span>-->
+<!--                </button>-->
+            </div>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="productForm" [formGroup]="shipmentForm" class="product w-100-p" fxLayout="column" fxFlex>
+
+                    <mat-tab-group>
+
+                        <mat-tab label="{{'SHIPPMENTS.SHIPPMENT_GENERAL' | translate}}">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar fxLayout="column">
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{"SHIPPMENTS.SHIPPMENT_NO" | translate}}</mat-label>
+                                    <input matInput placeholder="{{'SHIPPMENTS.SHIPPMENT_NO' | translate}}"
+                                           name="shippmentNo"
+                                           formControlName="shippmentNo"
+                                           required>
+                                    <mat-error *ngIf="shipmentForm.get('shippmentNo').hasError('required')">
+                                        {{"SHIPPMENTS.FORM_FIELDS.SHIPPMENT_NO_REQUIRED" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{"SHIPPMENTS.DELIVERY_ADDRESS" | translate}}</mat-label>
+                                    <input matInput placeholder="{{'SHIPPMENTS.DELIVERY_ADDRESS' | translate}}"
+                                           name="delivery_address"
+                                           formControlName="delivery_address"
+                                           required>
+                                    <mat-error *ngIf="shipmentForm.get('delivery_address').hasError('required')">
+                                        {{"SHIPPMENTS.FORM_FIELDS.DELIVERY_ADDRESS_REQUIRED" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{"SHIPPMENTS.STATUS" | translate}}</mat-label>
+                                    <mat-select formControlName="status">
+                                        <mat-option *ngFor="let status of globals.SHIPPMENT_STATUSES" [value]="status.status">
+                                            {{status.label[translate.currentLang.toLocaleLowerCase()]}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="shipmentForm.get('status').hasError('required')">
+                                        {{"SHIPPMENTS.FORM_FIELDS.STATUS_REQUIRED" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{"SHIPPMENTS.DESCRIPTION" | translate}}</mat-label>
+                                    <textarea name="description" formControlName="description" matInput type="text" max-rows="6" required></textarea>
+                                    <mat-error *ngIf="shipmentForm.get('description').hasError('required')">
+                                        {{"SHIPPMENTS.FORM_FIELDS.DESCRIPTION_REQUIRED" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </mat-tab>
+
+                    </mat-tab-group>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>
+

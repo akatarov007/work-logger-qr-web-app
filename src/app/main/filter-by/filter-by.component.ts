@@ -55,6 +55,11 @@ export class FilterByComponentDialogComponent
                 this.dialogTitle = value;
             })
             this.filterForm = this.createUsersFilterForm();
+        } else if ( this.object === 'shipments' ) {
+            this.translate.get('FILTER_BY.SHIPMENTS.SHIPMENT_NO').subscribe(value => {
+                this.dialogTitle = value;
+            })
+            this.filterForm = this.createShipmentsFilterForm();
         }
 
     }
@@ -79,6 +84,18 @@ export class FilterByComponentDialogComponent
     }
 
     /**
+     * Create filter form for items
+     *
+     * @returns {FormGroup}
+     */
+    createShipmentsFilterForm(): FormGroup
+    {
+        return this._formBuilder.group({
+            shippmentNo: [this.filterValue.shippmentNo !== 'all' ? this.filterValue.shippmentNo : ''],
+        });
+    }
+
+    /**
      * Method for resetting filter
      *
      */
@@ -91,6 +108,11 @@ export class FilterByComponentDialogComponent
                 email: "all",
             }
             this.filterForm = this.createUsersFilterForm()
+        } else if (this.object === 'shipments') {
+            this.filterValue = {
+                shippmentNo: "all",
+            }
+            this.filterForm = this.createShipmentsFilterForm()
         }
     }
 

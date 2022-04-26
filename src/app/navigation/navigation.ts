@@ -18,6 +18,15 @@ export const navigation: FuseNavigation[] = [
         ]
     },
     {
+        id       : 'shippments',
+        title    : 'Shippments',
+        translate: 'NAV.SHIPPMENTS',
+        type     : 'item',
+        icon     : 'list',
+        url      : '/shipments',
+        hidden   : false,
+    },
+    {
         id       : 'users',
         title    : 'Users',
         hidden   : false,

@@ -68,6 +68,19 @@
         </form>
         <!-- / USERS -->
 
+        <!-- SHIPMENT NUMBER -->
+        <form *ngIf="object === 'shipments'" [formGroup]="filterForm">
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>{{"FILTER_BY.SHIPMENTS.SHIPMENT_NO" | translate}}</mat-label>
+                    <input name="serial_num" formControlName="shippmentNo" matInput>
+                </mat-form-field>
+            </div>
+
+        </form>
+        <!-- / SHIPMENT NUMBER -->
+
     </div>
 
     <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">

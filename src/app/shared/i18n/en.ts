@@ -65,6 +65,32 @@ export const locale = {
             'OK': 'OK',
             'CANCEL': 'Cancel',
         },
+        "SHIPPMENTS": {
+            "SHIPPMENTS": "Orders",
+            "NEW_SHIPPMENT": "New order",
+            "SHIPPMENT_DETAILS": "Order details",
+            "SHIPPMENT_GENERAL": "General",
+            "SHIPPMENT_NO": "Order number",
+            "DELIVERY_ADDRESS": "Delivery address",
+            "STATUS": "Order status",
+            "DESCRIPTION": "Order description",
+            "FORM_FIELDS": {
+                "SHIPPMENT_NO_REQUIRED": "Order number is required",
+                "DELIVERY_ADDRESS_REQUIRED": "Delivery address is required",
+                "STATUS_REQUIRED": "Order status is required",
+                "DESCRIPTION_REQUIRED": "Order description is required",
+            }
+        },
+        "CHECK_DELIVERY_STATUS": {
+            "TOPIC": "Check status of your order",
+            "TYPE_SHIPPMENT_NO": "Type in yours order number",
+            "CHECK_BTN": "Check",
+            "FORM_FIELDS": {
+                "SHIPPMENT_NUMBER_REQUIRED": "Order number is required"
+            },
+            "STATUS_IS": "Order number {{shippmentNo}} status  is",
+            "DELIVERY_NOT_FOUND": "We didn't find any order matching your order number {{shippmentNo}}. Please double check your typed order number and try again."
+        },
         'SOMETHING_WENT_WRONG': "Something went wrong.",
         'INVALID_TOKEN': 'The request is either invalid or expired.',
         'INVALID_REFRESH_TOKEN': "Refresh token is invalid.",
@@ -125,6 +151,10 @@ export const locale = {
             'ONLY_NOT_CANCELLED': 'Only available',
             'ONLY_CANCELLED': 'Only unavailable',
             'ALL': 'All',
+
+            'SHIPMENTS': {
+                'SHIPMENT_NO': "Shipment number"
+            },
 
             'USERS': {
                 'TOPIC': "Users filter",

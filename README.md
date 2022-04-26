@@ -9,3 +9,5 @@ Spletna aplikacija namenjena podjetju ANFI d.o.o., ki omogoča upravljanje s upo
 Ta spletna aplikacija komunicira z API-jem (dostopen na GitHub repozitoriju: https://github.com/akatarov007/work-logger-api.git, branch *anfi*), s katerim prav tako komunicira tudi mobilna aplikacija za beleženje delovnega časa.
 
 S pomočjo QR kode uporabniki mobilne aplikacije za beleženje delovnega časa (dostopna na GitHub repozitoriju: https://github.com/akatarov007/work-logger-mob-app.git, branch *anfi*) le-to skenirajo za beleženje začetka ali konca delovne izmene.
+
+V spletni aplikaciji je prav tako tudi segment pošiljk - naročil in spletni obrazec za preverjanje statusa naročila na pod strani ```/check-order-status```. Te spremembe so bile dodane v sklopu te spletne aplikacije znotraj aktivnosti *Celovit sistem pametne logistike*. 

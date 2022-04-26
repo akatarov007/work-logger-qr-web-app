@@ -1,0 +1,307 @@
+@import "../../../../@fuse/scss/fuse";
+
+#product {
+    height: 100%;
+
+    .top-bg {
+        height: 85px;
+    }
+
+    .center {
+        padding: 0px;
+    }
+
+    .header {
+        height: 85px !important;
+        min-height: 85px !important;
+        max-height: 85px !important;
+        padding: 0 32px !important;
+
+        @include media-breakpoint('xs') {
+            padding: 8px 5px !important;
+            height: 120px !important;
+            min-height: 120px !important;
+            max-height: 120px !important;
+            //padding: 0 32px !important;
+        }
+
+        .product-image {
+            overflow: hidden;
+            width: 56px;
+            min-width: 56px;
+            max-width: 56px;
+            height: 56px;
+            min-height: 56px;
+            max-height: 56px;
+            border-radius: 4px;
+
+            img {
+                height: 100%;
+                width: auto;
+                max-width: none;
+            }
+        }
+
+        .subtitle {
+            margin: 6px 0 0 0;
+        }
+    }
+
+    .content {
+        padding: 0;
+
+        .mat-tab-group,
+        .mat-tab-body-wrapper,
+        .tab-content{
+            flex: 1 1 auto;
+            max-width: 100%;
+            height: 100%;
+            //overflow-y: scroll;
+        }
+
+        .mat-tab-body-content {
+            display: flex;
+        }
+
+        .mat-tab-label {
+            height: 64px;
+        }
+
+        .product-image {
+            overflow: hidden;
+            width: 128px;
+            height: 128px;
+            margin-right: 16px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+
+            img {
+                height: 100%;
+                width: auto;
+                max-width: none;
+            }
+        }
+
+        // Temporary prefix alignment fix
+        .mat-form-field-appearance-outline .mat-form-field-prefix,
+        .mat-form-field-appearance-outline .mat-form-field-suffix {
+            top: 0;
+        }
+
+        .price_group_form {
+            mat-form-field {
+                flex: auto;
+                margin: 0px 10px;
+            }
+        }
+    }
+
+    .lift-unit {
+        width: 100%;
+        padding: 15px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .img-thumbnail {
+        width: 150px;
+        height: 150px;
+        border-radius: 20px;
+    }
+
+    .no-results {
+        text-align: center;
+        padding: 20px;
+        font-weight: 800;
+        font-size: large;
+        color: #254b8a;
+    }
+
+    .orders-table {
+        //flex: 1 1 auto;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
+        .mat-header-row {
+            min-height: 64px;
+        }
+
+        .order {
+            position: relative;
+            cursor: pointer;
+            //height: 84px;
+        }
+
+        .order:hover {
+            background-color: #e2e2e2;
+            cursor: pointer;
+
+        }
+
+        .mat-cell {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+            padding-right: 0 !important;
+        }
+
+        .mat-column-id {
+            flex: 0 1 84px;
+        }
+
+        .mat-column-image {
+            flex: 0 1 84px;
+
+            .product-image {
+                width: 52px;
+                height: 52px;
+                border: 1px solid rgba(0, 0, 0, .12);
+            }
+        }
+
+        .mat-column-buttons {
+            flex: 0 1 80px;
+        }
+
+        .mat-column-bureaucrat_id {
+            flex: 0 0 8%;
+        }
+
+        .mat-column-cancellation, .mat-column-non_payer {
+            flex: 0 0 8%;
+        }
+
+        .quantity-indicator {
+            display: inline-block;
+            vertical-align: middle;
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+
+            & + span {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+
+        .active-icon {
+            border-radius: 50%;
+        }
+    }
+
+    .mobile-label {
+        display: none;
+    }
+
+    @media(max-width: 600px) {
+
+        .mat-cell {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .mobile-label {
+            width: 40%;
+            word-break: break-word;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .mat-row {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 8px 24px;
+        }
+
+        mat-cell:first-child, mat-footer-cell:first-child, mat-header-cell:first-child {
+            padding-left: 0;
+        }
+
+        mat-header-row {
+            display: none !important;
+        }
+
+    }
+
+    .parameter {
+        width: 150px;
+        max-width: 150px;
+        min-width: 150px;
+        height: 200px;
+        max-height: 200px;
+        min-height: 200px;
+        padding: 10px;
+        border-radius: 8px;
+        position:relative;
+        z-index:1;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        @media screen and (max-width: 599px) {
+            //max-width: 120px;
+            //min-width: 120px;
+            //height: 120px;
+        }
+
+        .parameter_header {
+            margin: 0 auto;
+            margin-bottom: 5px;
+            font-size: 18px;
+            color: #014676;
+            font-weight: 450;
+        }
+
+        .delete {
+            border: 3px solid white;
+            color: #e00000;
+            transform: scale(1.2);
+            border-radius: 5px;
+            height: 30px;
+            background-color: white;
+            position: absolute;
+            top: -15px;
+            width: 20px;
+            /* height: 20px; */
+            right: -5px;
+            z-index: 10;
+        }
+
+    }
+}
+
+.inputs {
+    mat-form-field, .select-input {
+        flex: auto;
+        margin: 0px 10px 0px 0px;
+    }
+
+    mat-form-field:last-child {
+        margin-right: 0px;
+    }
+}
+
+.unit {
+    border-radius: 15px;
+    width: 50%;
+    padding: 20px;
+    height: fit-content;
+    text-align: center;
+    position: relative;
+    box-shadow: 2px 0px 15px 0px rgba(0,0,0,0.14);
+
+    .information {
+        width: 100%;
+        height: fit-content;
+        margin: 2px 0px;
+        text-align: left;
+
+        .value {
+            text-align: right;
+        }
+    }
+
+}

@@ -157,11 +157,12 @@
                                            name="role"
                                            formControlName="role" (valueChange)="userRoleChange($event)"
                                            required>
-                                        <mat-option [value]="1">{{"USERS.ROLES.SUPER_ADMIN" | translate}}</mat-option>
+<!--                                        <mat-option [value]="1">{{"USERS.ROLES.SUPER_ADMIN" | translate}}</mat-option>-->
 <!--                                        <mat-option [value]="2">{{"USERS.ROLES.ADMIN" | translate}}</mat-option>-->
 <!--                                        <mat-option [value]="3">{{"USERS.ROLES.OFFICE_WORKER" | translate}}</mat-option>-->
 <!--                                        <mat-option [value]="4">{{"USERS.ROLES.WORKER" | translate}}</mat-option>-->
-                                        <mat-option [value]="99">{{"USERS.ROLES.SCHEDULER" | translate}}</mat-option>
+<!--                                        <mat-option [value]="99">{{"USERS.ROLES.SCHEDULER" | translate}}</mat-option>-->
+                                        <mat-option *ngFor="let role of _globals.USER_ROLES; let i = index;" [value]="role.role">{{role.label[translate.currentLang.toLocaleLowerCase()]}}</mat-option>
                                     </mat-select>
                                     <mat-error *ngIf="userForm.get('role').hasError('required')">
                                         {{"USERS.FORM_FIELDS.ROLE_REQUIRED" | translate}}

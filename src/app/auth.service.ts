@@ -32,7 +32,7 @@ export class AuthService {
      *
      */
     auth(credentials: any) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/auth', credentials)
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/auth', credentials)
     }
 
     /**
@@ -57,7 +57,7 @@ export class AuthService {
      *
      */
     sendRecoveryLink(email: string) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/email/reset_password', {email: email})
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/email/workLogger/reset_password', {email: email})
     }
 
     /**
@@ -70,7 +70,7 @@ export class AuthService {
             password: password
         }
 
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/newPass', payload)
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/newPass', payload)
     }
 
     /**
@@ -78,7 +78,7 @@ export class AuthService {
      *
      */
     checkResetPasswordTokenValidity(token: string) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/checkAuthToken', {token: token})
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/checkAuthToken', {token: token})
     }
 
     /**
@@ -94,7 +94,7 @@ export class AuthService {
      *
      */
     logout() {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/logout', {refresh_token: this.refresh_token})
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/logout', {refresh_token: this.refresh_token})
     }
 
     /**
@@ -144,7 +144,7 @@ export class AuthService {
      *
      */
     checkToken(url, routeAccessCredentials) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/check-token', {routeAccessCredentials: routeAccessCredentials, nextPath: url})
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/check-token', {routeAccessCredentials: routeAccessCredentials, nextPath: url})
     }
 
     /**
@@ -154,7 +154,7 @@ export class AuthService {
     refreshToken() {
         console.log("Refreshing token in progress....")
         let refresh_token = localStorage.getItem("refresh_token") ? localStorage.getItem("refresh_token") : ''
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/refresh-token', {refresh_token: refresh_token},
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/refresh-token', {refresh_token: refresh_token},
             {observe: 'response'}).pipe(
             tap((res: HttpResponse<any>) => {
                 // save newly generated refresh and access token to localStorage

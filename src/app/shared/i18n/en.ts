@@ -47,7 +47,8 @@ export const locale = {
         'MY_PROFILE': "My profile",
         'LOGOUT': "Logout",
         'SAMPLE': {
-            'HELLO': 'Hello, World!'
+            "WELCOME": "Welcome {{name}}!",
+            "WEB_APP_INTENT": "This web application is designed to manage users who can access the mobile time and attendance application as well as for generating QR code for the user to scan through the mobile application."
         },
         'ALERTS': {
             'INVALID_PASS': "Password is invalid.",

@@ -1,0 +1,15 @@
+.banner {
+    filter: saturate(80%);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.banner-text {
+    color: #0b3c38;
+    font-size: 6rem;
+    font-weight: 800;
+    text-shadow: 2px 2px white;
+    text-align: center;
+}

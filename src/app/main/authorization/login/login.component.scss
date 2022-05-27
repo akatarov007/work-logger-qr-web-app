@@ -4,7 +4,7 @@ login {
 
     #login {
         width: 100%;
-        background-color: #414146;
+        background-color: #2A2A2A;
         background-size: cover;
 
         #login-form-wrapper {
@@ -17,6 +17,7 @@ login {
 
             #login-form {
                 width: 384px;
+                border-radius: 25px;
                 background-color: white;
                 max-width: 384px;
                 padding: 32px;

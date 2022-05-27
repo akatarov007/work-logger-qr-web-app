@@ -48,7 +48,8 @@
                     <mat-label>{{"USERS.ROLE" | translate}}</mat-label>
                     <mat-select name="role" formControlName="role" matInput>
                         <mat-option value="">{{"FILTER_BY.USERS.ALL_ITEMS" | translate}}</mat-option>
-                        <mat-option value="1">{{"FILTER_BY.USERS.SUPER_ADMIN" | translate}}</mat-option>
+                        <mat-option *ngFor="let role of globals.USER_ROLES; let i = index;" [value]="role.role">{{role.label[translate.currentLang.toLocaleLowerCase()]}}</mat-option>
+<!--                        <mat-option value="1">{{"FILTER_BY.USERS.SUPER_ADMIN" | translate}}</mat-option>-->
 <!--                        <mat-option value="2">{{"FILTER_BY.USERS.ADMIN" | translate}}</mat-option>-->
 <!--                        <mat-option value="3">{{"FILTER_BY.USERS.OFFICE_WORKER" | translate}}</mat-option>-->
 <!--                        <mat-option value="4">{{"FILTER_BY.USERS.WORKER" | translate}}</mat-option>-->

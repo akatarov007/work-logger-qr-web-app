@@ -1,5 +1,19 @@
-<div class="page-layout blank p-24" fusePerfectScrollbar>
+<div class="page-layout banner" fusePerfectScrollbar
+     style="background-image: url('./assets/images/cabin.jpg'); height: 100%;"
+     fxLayout="column" fxLayoutAlign="center center">
 
-    <h2>{{'SAMPLE.HELLO' | translate}}</h2>
+    <div style="height: 100%; width: 100%;"
+         fxLayout="column" fxLayoutAlign="flex-start center">
+        <h2 class="banner-text" ngStyle.xs="font-size: 3rem;">
+            {{"SAMPLE.WELCOME" | translate:{name: authService.userDetails} }}
+        </h2>
+
+        <div style="width: 80%;">
+            <h3 style="color: white; text-align: center; font-weight: bold; text-shadow: 2px 2px black; font-size: 2.25rem;">
+                {{"SAMPLE.WEB_APP_INTENT" | translate }}
+            </h3>
+        </div>
+
+    </div>
 
 </div>

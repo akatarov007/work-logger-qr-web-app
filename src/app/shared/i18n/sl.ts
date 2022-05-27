@@ -47,7 +47,8 @@ export const locale = {
         'MY_PROFILE': "Moj profil",
         'LOGOUT': "Odjava",
         'SAMPLE': {
-            'HELLO': 'Pozdravljeni'
+            "WELCOME": "Dobrodošel/a, {{name}}!",
+            "WEB_APP_INTENT": "Ta spletna aplikacija je namenjena upravljanju s uporabniki, ki lahko dostopajo do mobilne aplikacije za beleženje delovnega časa kot tudi za generiranje QR kode, ki jo uporabniki skenirajo preko mobilne aplikacije za začetek ali konec delovne izmene."
         },
         'ALERTS': {
             'INVALID_PASS': "Nepravilno geslo.",
@@ -137,7 +138,7 @@ export const locale = {
             },
         },
         'QR_GEN': {
-            "SCAN_QR_TO_START": "Skeniraj QR kodo znotraj mobilne aplikacije LESKO MOBILE za evidentiranje začetka ali konca tvoje delovne izmene."
+            "SCAN_QR_TO_START": "Skeniraj QR kodo znotraj mobilne aplikacije za evidentiranje začetka ali konca tvoje delovne izmene."
         },
         'ADD_BTN': "Dodaj",
         'SAVE_BTN': "Shrani",

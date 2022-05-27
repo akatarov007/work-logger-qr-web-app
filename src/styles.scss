@@ -5,6 +5,15 @@
 @import "app/app.theme";
 
 @import "~ng-snotify/styles/material";
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap');
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+
+    mat-form-field, button .mat-button-wrapper, .mat-input-element, mat-placeholder, mat-label, mat-error {
+        font-family: 'Rajdhani', sans-serif;
+    }
+}
 
 .orders-table {
     //flex: 1 1 auto;
@@ -220,7 +229,7 @@ gallery {
 }
 
 .mat-dialog-actions {
-    background-color: #0ba245 !important;
+    background-color: #0d423e !important;
     color: whitesmoke !important;
     padding: 0px 16px !important;
 }

@@ -1,6 +1,7 @@
 export class User {
     id: string;
     name: string;
+    surname: string;
     username: string;
     email: string;
     role: number;
@@ -21,6 +22,7 @@ export class User {
         user = user || {};
         this.id = user.id || '';
         this.name = user.name || '';
+        this.surname = user.surname || '';
         this.username = user.username || '';
         this.email = user.email || '';
         this.password = '';

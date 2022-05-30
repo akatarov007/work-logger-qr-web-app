@@ -103,6 +103,8 @@ export class LoginComponent implements OnInit {
 
                 this._progressBar.hide();
 
+                console.log("Response: ", data)
+
                 if (status) { // check for response success
                     // Parse response object
                     let user = data.user;
@@ -110,7 +112,8 @@ export class LoginComponent implements OnInit {
                     let token = data.token;
                     let refresh_token = data.refresh_token;
 
-                    this._authService.setUserDetails(user.name, user.id, user.role, token, refresh_token);
+                    console.log("User: ", user)
+                    this._authService.setUserDetails(user, token, refresh_token);
 
                     this.translate.get('ALERTS.LOGIN_SUCCESS').subscribe(value => {
                         this._snotifyService.success('', value);
@@ -119,7 +122,7 @@ export class LoginComponent implements OnInit {
                     if (role !== 99 && role !== 1) { // if user isnt qr generator user, after successful login redirect him to /home
                         this._router.navigateByUrl('/home');
                     } else if (role === 1) {
-                        this._router.navigateByUrl('/users');
+                        this._router.navigateByUrl('/home');
                     } else { // otherwise to qr component that shows generated qr code
                         this._router.navigateByUrl('/qr')
                     }

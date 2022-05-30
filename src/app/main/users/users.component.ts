@@ -87,6 +87,7 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
             how_many: this.pageSize,
             offset: this.pageNo * this.pageSize,
             name: 'all',
+            surname: 'all',
             username: 'all',
             role: 'all',
             email: 'all',

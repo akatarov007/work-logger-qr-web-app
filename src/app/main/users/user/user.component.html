@@ -78,6 +78,7 @@
 
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
+                                <!-- NAME -->
                                 <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
                                     <mat-label>{{"USERS.NAME" | translate}}</mat-label>
                                     <input matInput placeholder="{{'USERS.NAME' | translate}}"
@@ -88,6 +89,20 @@
                                         {{"USERS.FORM_FIELDS.NAME_REQUIRED" | translate}}
                                     </mat-error>
                                 </mat-form-field>
+                                <!-- / NAME -->
+
+                                <!-- SURNAME -->
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{"USERS.SURNAME" | translate}}</mat-label>
+                                    <input matInput placeholder="{{'USERS.SURNAME' | translate}}"
+                                           name="surname"
+                                           formControlName="surname"
+                                           required>
+                                    <mat-error *ngIf="userForm.get('surname').hasError('required')">
+                                        {{"USERS.FORM_FIELDS.SURNAME_REQUIRED" | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                                <!-- / SURNAME -->
 
                                 <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
                                     <mat-label>{{"USERS.USERNAME" | translate}}</mat-label>

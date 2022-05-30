@@ -86,6 +86,9 @@ export class UserComponent implements OnInit, OnDestroy {
                     this.user = new User(user);
                     this.pageType = 'edit';
                     this.userForm = this.createUserEditForm();
+
+                    console.log("User: ", this.user)
+
                     // this.specifyWorkTypePrices();
                 } else {
                     this.pageType = 'new';
@@ -189,6 +192,7 @@ export class UserComponent implements OnInit, OnDestroy {
         return this._formBuilder.group({
             id: [this.user.id],
             name: [this.user.name, Validators.required],
+            surname: [this.user.surname, Validators.required],
             email: [this.user.email, [Validators.required, Validators.email]],
             username: [this.user.username, Validators.required],
             role: [this.user.role, Validators.required],
@@ -207,6 +211,7 @@ export class UserComponent implements OnInit, OnDestroy {
         return this._formBuilder.group({
             id: [this.user.id],
             name: [this.user.name, Validators.required],
+            surname: [this.user.surname, Validators.required],
             email: [this.user.email, [Validators.required, Validators.email]],
             username: [this.user.username, Validators.required],
             role: [this.user.role, Validators.required],
@@ -417,28 +422,70 @@ export class UserComponent implements OnInit, OnDestroy {
      *
      */
     deleteUser() {
-        this._progressBar.show();
 
-        this._userService.deleteUser(this.user).subscribe(data => {
-            this._progressBar.hide();
+        // display prompt for deleting the user
+        let alertText = '';
+        let alertOk = '';
+        let alertCancel = '';
+        let alertLost = '';
 
-            if (data.status) {
-                this.translate.get('ALERTS.DELETE_SUCCESSFUL').subscribe(value => {
-                    this._snotifyService.success('', value);
-                });
-                this.userForm.markAsPristine();
-                this._router.navigateByUrl('/users');
-            } else {
-                this._progressBar.hide();
+        this.translate.get('ALERTS.CHECK_BEFORE_PROCEED').subscribe(value => {
+            alertText = value;
+        });
+        this.translate.get('ALERTS.OK').subscribe(value => {
+            alertOk = value;
+        });
+        this.translate.get('ALERTS.CANCEL').subscribe(value => {
+            alertCancel = value;
+        });
+        this.translate.get('ALERTS.ACTION_CANNOT_BE_UNDONE').subscribe(value => {
+            alertLost = value;
+        });
 
-                this.translate.get('SOMETHING_WENT_WRONG').subscribe(value => {
-                    this._snotifyService.error('', value);
-                });
-            }
-        }, error => {
-            this._progressBar.hide();
-            console.log(error);
-            throw error;
+        this._snotifyService.confirm(alertLost, alertText, {
+            // timeout: 5000,
+            // showProgressBar: true,
+            closeOnClick: false,
+            backdrop: 0.5,
+            // pauseOnHover: true,
+            buttons: [
+                {
+                    text: alertOk, action: (toast) => {
+                        this._progressBar.show();
+
+                        // remove user in case the user prompted to delete the user
+                        this._userService.deleteUser(this.user).subscribe(data => {
+                            this._progressBar.hide();
+
+                            if (data.status) {
+                                this.translate.get('ALERTS.DELETE_SUCCESSFUL').subscribe(value => {
+                                    this._snotifyService.success('', value);
+                                });
+                                this.userForm.markAsPristine();
+                                this._router.navigateByUrl('/users');
+                            } else {
+                                this._progressBar.hide();
+
+                                this.translate.get('SOMETHING_WENT_WRONG').subscribe(value => {
+                                    this._snotifyService.error('', value);
+                                });
+                            }
+                        }, error => {
+                            this._progressBar.hide();
+                            console.log(error);
+                            throw error;
+                        });
+
+                        this._snotifyService.remove(toast.id);
+
+                    }, bold: false
+                },
+                {
+                    text: alertCancel, action: (toast) => {
+                        this._snotifyService.remove(toast.id);
+                    }
+                },
+            ]
         });
     }
 }

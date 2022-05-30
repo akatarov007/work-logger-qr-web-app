@@ -3,10 +3,10 @@ import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 
 export class Globals {
     // development
-    BASE_URL = 'http://localhost:8080'
+    // BASE_URL = 'http://localhost:8080'
 
     // production
-    // BASE_URL = 'https://';
+    BASE_URL = 'https://api.resort-knez.si/';
 
     USER_ROLES = [
         {

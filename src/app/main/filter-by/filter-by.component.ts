@@ -72,6 +72,7 @@ export class FilterByComponentDialogComponent
     {
         return this._formBuilder.group({
             name: [this.filterValue.name !== 'all' ? this.filterValue.name : ''],
+            surname: [this.filterValue.surname !== 'all' ? this.filterValue.surname : ''],
             username: [this.filterValue.username !== 'all' ? this.filterValue.username : ''],
             role: [this.filterValue.role !== 'all' ? this.filterValue.role : ''],
             email: [this.filterValue.email !== 'all' ? this.filterValue.email : ''],
@@ -86,6 +87,7 @@ export class FilterByComponentDialogComponent
         if (this.object === 'users') {
             this.filterValue = {
                 name: "all",
+                surname: "all",
                 username: "all",
                 role: "all",
                 email: "all",

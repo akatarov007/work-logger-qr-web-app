@@ -31,6 +31,13 @@
 
             <div fxLayout="row" fxLayoutAlign="start start">
                 <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>{{"USERS.SURNAME" | translate}}</mat-label>
+                    <input name="surname" formControlName="surname" matInput>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
                     <mat-label>{{"USERS.USERNAME" | translate}}</mat-label>
                     <input name="username" formControlName="username" matInput>
                 </mat-form-field>

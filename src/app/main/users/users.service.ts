@@ -65,7 +65,7 @@ export class UsersService {
         this.dataChange.next([])
 
         return new Promise((resolve, reject) => {
-            this._httpClient.get(this._globals.BASE_URL + '/users/workLogger/filterBy', {params: this.filter})
+            this._httpClient.get(this._globals.BASE_URL + '/workLogger/filterBy', {params: this.filter})
                 .subscribe((response: any) => {
                     setTimeout(() => {
                         this.lengthOfData = response.all
@@ -88,7 +88,7 @@ export class UsersService {
      *
      */
     getAllUsers() {
-        return this._httpClient.get<any>(this._globals.BASE_URL + '/users/workLogger/getAllUsers')
+        return this._httpClient.get<any>(this._globals.BASE_URL + '/workLogger/getAllUsers')
     }
 
     /**
@@ -96,6 +96,6 @@ export class UsersService {
      *
      */
     getAllWorkers() {
-        return this._httpClient.get<any>(this._globals.BASE_URL + '/users/workLogger/getAllWorkers')
+        return this._httpClient.get<any>(this._globals.BASE_URL + '/workLogger/getAllWorkers')
     }
 }

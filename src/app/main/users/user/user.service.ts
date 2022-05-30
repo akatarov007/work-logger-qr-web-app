@@ -75,7 +75,7 @@ export class UserService implements Resolve<any> {
                 this.onUserChanged.next(false);
                 resolve(false);
             } else {
-                this._httpClient.get(this._globals.BASE_URL + '/users/workLogger/getUser/' + this.routeParams.id)
+                this._httpClient.get(this._globals.BASE_URL + '/workLogger/getUser/' + this.routeParams.id)
                     .subscribe((response: any) => {
                         if (response.status) {
                             this.user = response.data;
@@ -101,7 +101,7 @@ export class UserService implements Resolve<any> {
      *
      */
     saveUser(user) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/updateUser', user);
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/updateUser', user);
     }
 
     /**
@@ -109,14 +109,14 @@ export class UserService implements Resolve<any> {
      *
      */
     addUser(user) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/addUser', user);
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/addUser', user);
     }
 
     /**
      * Delete user
      */
     deleteUser(user) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/deleteUser', user);
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/deleteUser', user);
     }
 
     /**
@@ -124,7 +124,7 @@ export class UserService implements Resolve<any> {
      *
      */
     validateEmail(email) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/validateEmail', {email: email});
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/validateEmail', {email: email});
     }
 
     /**
@@ -132,6 +132,6 @@ export class UserService implements Resolve<any> {
      *
      */
     validateUsername(username) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/validateUsername', {username: username});
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/validateUsername', {username: username});
     }
 }

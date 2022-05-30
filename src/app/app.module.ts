@@ -92,8 +92,8 @@ const appRoutes: Routes = [
     {
         path: 'qr',
         component: QrGeneratorComponent,
-        // canActivate: [AuthGuard],
-        // data: {expectedRole: [99]}
+        canActivate: [AuthGuard],
+        data: {expectedRole: [99]}
     },
     {
         path: 'users',

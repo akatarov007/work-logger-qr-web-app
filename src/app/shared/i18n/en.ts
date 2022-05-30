@@ -63,6 +63,7 @@ export const locale = {
             'DELETE_SUCCESSFUL': "Delete successful.",
             'CHECK_BEFORE_PROCEED': 'Are you sure you want to continue?',
             'CHANGES_WILL_BE_LOST': 'Changes will be lost.',
+            'ACTION_CANNOT_BE_UNDONE': "The process cannot be undone.",
             'OK': 'OK',
             'CANCEL': 'Cancel',
         },
@@ -83,7 +84,8 @@ export const locale = {
 
         'USERS': {
             'USERS': "Users",
-            "NAME": "Full name",
+            "NAME": "Name",
+            "SURNAME": "Surname",
             "EMAIL": "Email",
 
             //NEW USER
@@ -99,7 +101,8 @@ export const locale = {
             'WORK_TYPE': "Type of work",
 
             'FORM_FIELDS': {
-                'NAME_REQUIRED': "Full name of user is required",
+                'NAME_REQUIRED': "Name of user is required",
+                'SURNAME_REQUIRED': "Surname of user is required",
                 'USERNAME_REQUIRED': "Username is required",
                 'USERNAME_TAKEN': "Username is already taken",
                 'EMAIL_REQUIRED': "Email is required",

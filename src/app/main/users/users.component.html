@@ -68,7 +68,7 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{"USERS.NAME" | translate}}</mat-header-cell>
                     <mat-cell *matCellDef="let order">
                         <span class="mobile-label">{{'USERS.NAME' | translate}}</span>
-                        <p class="text-truncate">{{order.name}}</p>
+                        <p class="text-truncate">{{order.name}} {{order.surname}}</p>
                     </mat-cell>
                 </ng-container>
 

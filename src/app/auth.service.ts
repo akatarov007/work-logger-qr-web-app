@@ -15,7 +15,7 @@ class User {
     providedIn: 'root'
 })
 export class AuthService {
-    userDetails: string = localStorage.getItem("loggedUser") || ''
+    userDetails: any = {}
     token: string = localStorage.getItem("token") || ''
     refresh_token: string = localStorage.getItem("refresh_token") || ''
     role: number = +localStorage.getItem('role') || 0
@@ -25,6 +25,13 @@ export class AuthService {
         private _httpClient: HttpClient,
         private _globals: Globals
     ) {
+        if (localStorage.getItem("loggedUser")) {
+            this.userDetails = JSON.parse(localStorage.getItem("loggedUser"))
+            this.setRole(this.userDetails.role);
+            this.setUserId(this.userDetails.id);
+        } else {
+            this.userDetails = {}
+        }
     }
 
     /**
@@ -32,23 +39,20 @@ export class AuthService {
      *
      */
     auth(credentials: any) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/auth', credentials)
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/auth', credentials)
     }
 
     /**
      * Set user's details after successful login
      */
-    setUserDetails(user: string, user_id: number, user_role: number, token: string, refresh_token: string) {
-        localStorage.setItem("loggedUser", user)
-        localStorage.setItem("user_id", JSON.stringify(user_id))
-        localStorage.setItem("role", JSON.stringify(user_role))
-        localStorage.setItem("token", token)
-        localStorage.setItem("refresh_token", refresh_token)
-        localStorage.setItem("loggedIn", JSON.stringify(true))
+    setUserDetails(user: any, token: string, refresh_token: string) {
+        localStorage.setItem('loggedUser', JSON.stringify(user))
+        localStorage.setItem('token', token)
+        localStorage.setItem('refresh_token', refresh_token)
         this.userDetails = user
         this.token = token
-        this.role = user_role
-        this.userId = user_id
+        this.role = user.role
+        this.userId = user.id
         this.refresh_token = refresh_token
     }
 
@@ -70,7 +74,7 @@ export class AuthService {
             password: password
         }
 
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/newPass', payload)
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/newPass', payload)
     }
 
     /**
@@ -78,7 +82,7 @@ export class AuthService {
      *
      */
     checkResetPasswordTokenValidity(token: string) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/checkAuthToken', {token: token})
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/checkAuthToken', {token: token})
     }
 
     /**
@@ -94,7 +98,7 @@ export class AuthService {
      *
      */
     logout() {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/logout', {refresh_token: this.refresh_token})
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/logout', {refresh_token: this.refresh_token})
     }
 
     /**
@@ -126,6 +130,7 @@ export class AuthService {
      *
      */
     setRole(role) {
+        this.userDetails.role = role;
         this.role = role
         localStorage.setItem('role', role)
     }
@@ -135,6 +140,7 @@ export class AuthService {
      *
      */
     setUserId(user_id) {
+        this.userDetails.id = user_id;
         this.userId = user_id
         localStorage.setItem('user_id', user_id)
     }
@@ -144,7 +150,7 @@ export class AuthService {
      *
      */
     checkToken(url, routeAccessCredentials) {
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/check-token', {routeAccessCredentials: routeAccessCredentials, nextPath: url})
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/check-token', {routeAccessCredentials: routeAccessCredentials, nextPath: url})
     }
 
     /**
@@ -154,11 +160,11 @@ export class AuthService {
     refreshToken() {
         console.log("Refreshing token in progress....")
         let refresh_token = localStorage.getItem("refresh_token") ? localStorage.getItem("refresh_token") : ''
-        return this._httpClient.post<any>(this._globals.BASE_URL + '/users/workLogger/refresh-token', {refresh_token: refresh_token},
+        return this._httpClient.post<any>(this._globals.BASE_URL + '/workLogger/refresh-token', {refresh_token: refresh_token},
             {observe: 'response'}).pipe(
             tap((res: HttpResponse<any>) => {
                 // save newly generated refresh and access token to localStorage
-                this.setUserDetails(this.userDetails, this.userId, this.role, res.body.token, res.body.refresh_token)
+                this.setUserDetails(this.userDetails, res.body.token, res.body.refresh_token)
             })
         )
     }

@@ -63,6 +63,7 @@ export const locale = {
             'DELETE_SUCCESSFUL': "Izbris uspesen.",
             'CHECK_BEFORE_PROCEED': 'Ali ste prepričani, da želite nadaljevati?',
             'CHANGES_WILL_BE_LOST': 'Spremembe bodo izgubljene.',
+            'ACTION_CANNOT_BE_UNDONE': "Procesa se ne da razveljaviti.",
             'OK': 'V redu',
             'CANCEL': 'Prekliči',
         },
@@ -83,7 +84,8 @@ export const locale = {
 
         'USERS': {
             'USERS': "Uporabniki",
-            "NAME": "Polno ime",
+            "NAME": "Ime",
+            "SURNAME": "Priimek",
             "EMAIL": "E-poštni naslov",
 
             //NEW USER
@@ -99,7 +101,8 @@ export const locale = {
             'WORK_TYPE': "Tip dela",
 
             'FORM_FIELDS': {
-                'NAME_REQUIRED': "Polno ime uporabnika je obvezno",
+                'NAME_REQUIRED': "Ime uporabnika je obvezno",
+                'SURNAME_REQUIRED': "Priimek uporabnika je obvezen",
                 'USERNAME_REQUIRED': "Uporabniško ime je obvezno",
                 'USERNAME_TAKEN': "Uporabniško ime je že zasedeno",
                 'EMAIL_REQUIRED': "E-poštni naslov uporabnika je obvezen",

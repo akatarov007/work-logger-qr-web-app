@@ -53,7 +53,7 @@ export class UserComponent implements OnInit, OnDestroy {
         private _snotifyService: SnotifyService,
         private _router: Router,
         private _httpClient: HttpClient,
-        private _globals: Globals,
+        public _globals: Globals,
         private _progressBar: FuseProgressBarService
     ) {
         // Set the default

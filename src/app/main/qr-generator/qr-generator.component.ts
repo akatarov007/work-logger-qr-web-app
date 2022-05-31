@@ -41,14 +41,14 @@ export class QrGeneratorComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.timestamp = CryptoJS.AES.encrypt("tmstmp_" + Date.now().toString(), '183129JZXN123DN2JNAD').toString();
-        //emit value in sequence every 1 second
-        const source = interval(1000 );
+        this.timestamp = CryptoJS.AES.encrypt("tmstmp_" + Date.now().toString(), '0f6c0d32-284e-4ba6-a4ff-b2d4b63efe9d').toString();
+        //emit value in sequence every 1 minute
+        const source = interval(1000 * 60 );
         this.subscription = source.subscribe(() => this.refreshQR());
     }
 
     refreshQR() {
-        this.timestamp = CryptoJS.AES.encrypt("tmstmp_" + Date.now().toString(), '183129JZXN123DN2JNAD').toString();
+        this.timestamp = CryptoJS.AES.encrypt("tmstmp_" + Date.now().toString(), '0f6c0d32-284e-4ba6-a4ff-b2d4b63efe9d').toString();
     }
 
     ngOnDestroy() {

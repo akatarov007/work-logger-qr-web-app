@@ -46,6 +46,7 @@ import {QRCodeModule} from 'angularx-qrcode';
 import {GetRolePipe} from './shared/pipes/get-role.pipe';
 import {UsersService} from './main/users/users.service';
 import {Globals} from './shared/globals';
+import {LocalDatePipe} from './shared/pipes/localDate';
 
 // @ts-ignore
 ToastDefaults.toast.position = 'rightTop';
@@ -124,7 +125,8 @@ const appRoutes: Routes = [
         ResetPasswordComponent,
         MailConfirmComponent,
         FilterByComponentDialogComponent,
-        GetRolePipe
+        GetRolePipe,
+        LocalDatePipe
     ],
     imports: [
         BrowserModule,

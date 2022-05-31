@@ -23,13 +23,13 @@ export class Globals {
         //         'en': 'Admin',
         //     }
         // },
-        // {
-        //     role: 4,
-        //     label: {
-        //         'sl': 'Delavec',
-        //         'en': 'Worker',
-        //     }
-        // },
+        {
+            role: 4,
+            label: {
+                'sl': 'Uporabnik - delavec',
+                'en': 'User - worker',
+            }
+        },
         // {
         //     role: 5,
         //     label: {

@@ -184,51 +184,9 @@
                                     </mat-error>
                                 </mat-form-field>
 
-
-                                <div fxLayout="row" fxLayoutAlign="space-between center">
-                                    <button style="margin-left: auto;" *ngIf="userForm.get('role').value === 4" mat-raised-button color="primary" (click)="tabForward()">{{"MATERIAL_TAB_PROCEED_BTN" | translate}}</button>
-                                </div>
                             </div>
 
                         </mat-tab>
-
-                        <!-- SPECIFY WORK TYPES MAT TAB -->
-                        <mat-tab *ngIf="userForm.get('role').value === 4" label="{{'USERS.WORK_TYPES' | translate}}">
-
-                            <div class="tab-content p-24" fusePerfectScrollbar>
-
-                                <div *ngFor="let work_type of getWorkTypesFormArray.controls">
-                                    <form [formGroup]="work_type">
-                                        <div class="price_group_form" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space_between center" fxLayoutAlign.xs="center" fxLayout.xs="column">
-                                            <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
-                                                <mat-label>{{"USERS.WORK_TYPE" | translate}}</mat-label>
-                                                <input matInput placeholder="{{work_type.get('work_type').value[translate.currentLang]}}"
-                                                       name="work_type_name"
-                                                       formControlName="work_type_name"
-                                                       type="text">
-                                            </mat-form-field>
-                                            <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
-                                                <mat-label>{{"USERS.HOURLY_RATE" | translate}}</mat-label>
-                                                <input matInput placeholder="{{'USERS.HOURLY_RATE' | translate}}"
-                                                       name="hourly_rate"
-                                                       formControlName="hourly_rate"
-                                                       type="number">
-                                                <span matSuffix>€&nbsp;</span>
-                                                <mat-error *ngIf="work_type.get('hourly_rate').hasError('required')">
-                                                    {{"USERS.FORM_FIELDS.HOURLY_RATE__REQUIRED" | translate}}
-                                                </mat-error>
-                                            </mat-form-field>
-                                        </div>
-                                    </form>
-
-                                </div>
-
-                                <div fxLayout="row" fxLayoutAlign="space-between center">
-                                    <button mat-raised-button color="primary" (click)="tabBackward()">{{"MATERIAL_TAB_BACKWARD_BTN" | translate}}</button>
-                                </div>
-                            </div>
-                        </mat-tab>
-                        <!-- / SPECIFY WORK TYPES MAT TAB -->
 
                     </mat-tab-group>
 

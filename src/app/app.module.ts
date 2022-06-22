@@ -47,6 +47,7 @@ import {GetRolePipe} from './shared/pipes/get-role.pipe';
 import {UsersService} from './main/users/users.service';
 import {Globals} from './shared/globals';
 import {LocalDatePipe} from './shared/pipes/localDate';
+import {QuicksightAnalyticsComponent} from './main/quicksight-analytics/quicksight-analytics.component';
 
 // @ts-ignore
 ToastDefaults.toast.position = 'rightTop';
@@ -97,6 +98,12 @@ const appRoutes: Routes = [
         data: {expectedRole: [99]}
     },
     {
+        path: 'quicksight',
+        component: QuicksightAnalyticsComponent,
+        canActivate: [AuthGuard],
+        data: {expectedRole: [1]}
+    },
+    {
         path: 'users',
         component: UsersComponent,
         canActivate: [AuthGuard],
@@ -126,6 +133,7 @@ const appRoutes: Routes = [
         MailConfirmComponent,
         FilterByComponentDialogComponent,
         GetRolePipe,
+        QuicksightAnalyticsComponent,
         LocalDatePipe
     ],
     imports: [

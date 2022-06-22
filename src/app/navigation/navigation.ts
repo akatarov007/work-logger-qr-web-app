@@ -18,6 +18,15 @@ export const navigation: FuseNavigation[] = [
         ]
     },
     {
+        id       : 'quicksight',
+        title    : 'QuickSight',
+        hidden   : false,
+        translate: 'NAV.QUICKSIGHT',
+        type     : 'item',
+        icon     : 'pie_chart',
+        url      : '/quicksight',
+    },
+    {
         id       : 'users',
         title    : 'Users',
         hidden   : false,

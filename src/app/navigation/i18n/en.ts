@@ -6,6 +6,7 @@ export const locale = {
             'HOME'        : {
                 'TITLE': 'Home'
             },
+            'QUICKSIGHT': 'CRM Analytics',
             'USERS': 'Users',
             'TEMPLATES': "Order templates"
         }
